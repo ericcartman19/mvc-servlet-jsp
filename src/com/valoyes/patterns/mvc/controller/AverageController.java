@@ -1,6 +1,8 @@
 package com.valoyes.patterns.mvc.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,10 @@ public class AverageController extends HttpServlet {
 		
 		AverageModel model = new AverageModel();
 		int result = model.calculateAverage(num1, num2);
-		
+		request.setAttribute("result", result);
+		// hago forward a la proxima view
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("result.jsp");
+		requestDispatcher.forward(request, response);
 	
 	}
 
